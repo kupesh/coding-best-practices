@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the Number Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            padding-top: 50px;
+        }
+        #game-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+        input {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        .message {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<div id="game-container">
+    <h1>Guess the Number!</h1>
+    <p>I'm thinking of a number between 1 and 100. Can you guess it?</p>
+    <input type="number" id="guessInput" placeholder="Enter your guess" min="1" max="100">
+    <button onclick="checkGuess()">Submit Guess</button>
+    <p class="message" id="message"></p>
+</div>
+
+<script>
+    const randomNumber = Math.floor(Math.random() * 100) + 1;
+    let attempts = 0;
+
+    function checkGuess() {
+        const userGuess = Number(document.getElementById('guessInput').value);
+        const messageElement = document.getElementById('message');
+        attempts++;
+
+        if (userGuess === randomNumber) {
+            messageElement.textContent = `Congratulations! You guessed it in ${attempts} tries. The number was ${randomNumber}.`;
+            messageElement.style.color = 'green';
+        } else if (userGuess > randomNumber) {
+            messageElement.textContent = 'Too high! Try again.';
+            messageElement.style.color = 'orange';
+        } else {
+            messageElement.textContent = 'Too low! Try again.';
+            messageElement.style.color = 'orange';
+        }
+    }
+</script>
+
+</body>
+</html>
